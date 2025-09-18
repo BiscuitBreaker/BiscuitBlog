@@ -6,8 +6,9 @@ services:
     env: node
     region: oregon
     plan: free
-    buildCommand: cd backend && npm ci && npm run build
-    startCommand: cd backend && npm start
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
     healthCheckPath: /api/health
     envVars:
       - key: NODE_ENV
@@ -38,8 +39,9 @@ services:
   - type: web
     name: biscuitbreaker-frontend
     runtime: static
-    buildCommand: cd frontend && npm ci && npm run build
-    staticPublishPath: frontend/dist
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*

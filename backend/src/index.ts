@@ -22,7 +22,7 @@ const PORT = process.env.PORT || 5000;
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Import passport config AFTER environment variables are loaded
-import('./config/passport');
+require('./config/passport');
 
 // Session store configuration
 const PgSession = ConnectPgSimple(session);
