@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <g fill="none" stroke="white" stroke-opacity="0.06" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Laptop -->
+    <rect x="32" y="24" width="54" height="30" rx="2"/>
+    <rect x="26" y="54" width="66" height="6" rx="1"/>
+
+    <!-- Cookie -->
+    <circle cx="156" cy="38" r="16"/>
+    <circle cx="148" cy="36" r="2"/>
+    <circle cx="162" cy="32" r="2"/>
+
+    <!-- Headphones -->
+    <path d="M248 44a22 22 0 0 1 44 0"/>
+    <rect x="244" y="44" width="12" height="14" rx="3"/>
+    <rect x="288" y="44" width="12" height="14" rx="3"/>
+
+    <!-- Mobile -->
+    <rect x="40" y="206" width="24" height="44" rx="4"/>
+    <circle cx="52" cy="242" r="1.6"/>
+
+    <!-- Chocolate bar -->
+    <rect x="212" y="202" width="28" height="18" rx="2"/>
+    <path d="M212 208h28M226 202v18M240 202v18"/>
+
+    <!-- Smileys -->
+    <circle cx="286" cy="284" r="8"/>
+    <path d="M282 282h0M290 282h0M282 286c4 4 8 4 12 0"/>
+
+    <!-- Cupcake -->
+    <path d="M112 252c8 0 14 6 14 14H98c0-8 6-14 14-14z"/>
+    <path d="M98 266h28l-4 18a6 6 0 0 1-5.8 4.5h-8.4A6 6 0 0 1 102 284z"/>
+  </g>
+</svg>

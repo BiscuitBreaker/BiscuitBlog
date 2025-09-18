@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  background-color: #0a0a0a;
+  min-height: 100vh;
+}
+
+.hover\:text-accent-teal:hover { color: #2dd4bf; }
+.text-accent-teal { color: #2dd4bf; }
+
+/* WhatsApp-like tiled doodles: bakery outlines at ultra-low opacity */
+.bakery-bg {
+  background-image: url('/patterns/bakery.svg'), url('/patterns/bakery-2.svg');
+  background-repeat: repeat, repeat;
+  /* two sizes to break symmetry */
+  background-size: 220px 220px, 260px 260px;
+  /* slight offset for the second layer */
+  background-position: 0 0, 80px 80px;
+}
+
+/* Frosted glass utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+}
+.glass:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.12); }
+.glass-strong {
+  background: rgba(17, 17, 17, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+}
+.glass-input { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+
+.prose code {
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  background-color: #171717; /* neutral-900 */
+  color: #e5e5e5; /* neutral-200 */
+}
+
+/* Button styles */
+.btn-primary {
+  @apply rounded-full px-5 py-2 text-white/90 transition glass;
+}
+
+.btn-secondary {
+  @apply rounded-full px-5 py-2 text-white/70 hover:text-white transition;
+}

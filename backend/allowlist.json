@@ -1,0 +1,14 @@
+{
+  "allowedEmails": [
+    "bbreakergaming@gmail.com",
+    "vinay_rayana@srmap.edu.in", 
+    "vinayrayana@gmail.com"
+  ],
+  "allowedDomains": [
+    "@yourcompany.com",
+    "@youruniversity.edu"
+  ],
+  "admins": [
+    "bbreakergaming@gmail.com"
+  ]
+}
