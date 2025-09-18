@@ -8,6 +8,9 @@ const Landing: React.FC = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
+  // API base URL configuration
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   // Redirect to home if already authenticated
   useEffect(() => {
     if (user && !loading) {
@@ -190,7 +193,7 @@ const Landing: React.FC = () => {
             transition={{ duration: 0.6, delay: 1.4 }}
           >
             <motion.a
-              href="https://biscuitblog.onrender.com/api/auth/google"
+              href={`${API_BASE_URL}/api/auth/google`}
               className="group relative inline-flex items-center gap-3 glass-strong px-8 py-4 rounded-full text-white/90 hover:text-white transition-all duration-300 overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

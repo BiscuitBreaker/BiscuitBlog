@@ -50,7 +50,7 @@ export interface User {
 export const authAPI = {
   me: () => api.get<{ user: User }>('/auth/me'),
   logout: () => api.post('/auth/logout'),
-  loginUrl: () => '/api/auth/google',
+  loginUrl: () => `${API_BASE_URL}/auth/google`,
 };
 
 // Posts API
