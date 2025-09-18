@@ -30,14 +30,14 @@ services:
       - key: FRONTEND_URL
         fromService:
           type: web
-          name: biscuitbreaker-frontend
+          name: biscuitblog
           property: host
       - key: GOOGLE_CALLBACK_URL
         value: https://biscuitbreaker-backend.onrender.com/api/auth/google/callback
 
   # Frontend React App
   - type: web
-    name: biscuitbreaker-frontend
+    name: biscuitblog
     runtime: static
     rootDir: frontend
     buildCommand: npm ci && npm run build
