@@ -12,6 +12,7 @@ import passport from 'passport';
 import ConnectPgSimple from 'connect-pg-simple';
 
 import { db, pool } from './db/connection';
+import { users } from './db/schema';
 import authRoutes from './routes/auth';
 import postsRoutes from './routes/posts';
 import memoriesRoutes from './routes/memories';
@@ -72,6 +73,22 @@ app.use('/api/uploads', uploadsRoutes);
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Database health check
+app.get('/api/health/db', async (req, res) => {
+  try {
+    // Simple query to test database connection
+    await db.select().from(users).limit(1);
+    res.json({ status: 'ok', database: 'connected' });
+  } catch (error) {
+    console.error('Database health check failed:', error);
+    res.status(500).json({ 
+      status: 'error', 
+      database: 'disconnected',
+      error: process.env.NODE_ENV === 'production' ? 'Database connection failed' : (error as Error).message
+    });
+  }
 });
 
 // 404 handler

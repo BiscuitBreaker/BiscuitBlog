@@ -73,6 +73,10 @@ passport.deserializeUser(async (idOrUser: any, done) => {
 
 // Google OAuth Strategy
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+  console.log('Configuring Google OAuth Strategy...');
+  console.log('Callback URL:', process.env.GOOGLE_CALLBACK_URL);
+  console.log('Production mode:', isProduction);
+  
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -80,9 +84,12 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
+      console.log('Google OAuth callback received for profile:', profile.id);
       const email = profile.emails?.[0]?.value;
+      console.log('User email:', email);
       
       if (!email || !isEmailAllowed(email)) {
+        console.log('Email not allowed or missing');
         return done(null, false, { message: 'Email not in allowlist' });
       }
 
@@ -131,7 +138,10 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
         done(null, mockUser);
       }
     } catch (error) {
+      console.error('Google OAuth strategy error:', error);
       done(error as Error, undefined);
     }
   }));
+} else {
+  console.error('Google OAuth not configured - missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET');
 }

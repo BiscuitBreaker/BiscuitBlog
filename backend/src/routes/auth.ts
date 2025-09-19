@@ -23,19 +23,39 @@ router.post('/logout', (req, res) => {
 });
 
 // GET /api/auth/google - Start Google OAuth
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
+router.get('/google', (req, res, next) => {
+  console.log('Starting Google OAuth flow...');
+  console.log('GOOGLE_CLIENT_ID:', process.env.GOOGLE_CLIENT_ID ? 'Set' : 'Missing');
+  console.log('GOOGLE_CLIENT_SECRET:', process.env.GOOGLE_CLIENT_SECRET ? 'Set' : 'Missing');
+  
+  passport.authenticate('google', {
+    scope: ['profile', 'email']
+  })(req, res, next);
+});
 
 // GET /api/auth/google/callback - Google OAuth callback
 router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login?error=auth_failed' }),
+  (req, res, next) => {
+    console.log('OAuth callback received...');
+    next();
+  },
+  passport.authenticate('google', { 
+    failureRedirect: '/login?error=auth_failed',
+    failureMessage: true 
+  }),
   (req, res) => {
-    // Successful authentication, redirect to frontend
-    const frontendUrl = process.env.FRONTEND_URL 
-      ? `https://${process.env.FRONTEND_URL}` 
-      : 'http://localhost:5173';
-    res.redirect(frontendUrl);
+    try {
+      console.log('OAuth success, user:', req.user);
+      // Successful authentication, redirect to frontend
+      const frontendUrl = process.env.FRONTEND_URL 
+        ? `https://${process.env.FRONTEND_URL}` 
+        : 'http://localhost:5173';
+      console.log('Redirecting to:', frontendUrl);
+      res.redirect(frontendUrl);
+    } catch (error) {
+      console.error('OAuth callback error:', error);
+      res.status(500).json({ error: 'Authentication failed' });
+    }
   }
 );
 
