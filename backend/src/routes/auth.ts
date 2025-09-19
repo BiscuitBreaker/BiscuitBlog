@@ -32,7 +32,10 @@ router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/login?error=auth_failed' }),
   (req, res) => {
     // Successful authentication, redirect to frontend
-    res.redirect(process.env.FRONTEND_URL || 'http://localhost:5173');
+    const frontendUrl = process.env.FRONTEND_URL 
+      ? `https://${process.env.FRONTEND_URL}` 
+      : 'http://localhost:5173';
+    res.redirect(frontendUrl);
   }
 );
 

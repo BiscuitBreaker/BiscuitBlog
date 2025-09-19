@@ -31,7 +31,7 @@ const PgSession = ConnectPgSimple(session);
 app.use(helmet());
 app.use(cors({
   origin: [
-    process.env.FRONTEND_URL || 'http://localhost:5173',
+    process.env.FRONTEND_URL ? `https://${process.env.FRONTEND_URL}` : 'http://localhost:5173',
     'http://localhost:5174' // Alternative port for development
   ],
   credentials: true

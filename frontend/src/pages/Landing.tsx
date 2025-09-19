@@ -10,6 +10,10 @@ const Landing: React.FC = () => {
 
   // API base URL configuration
   const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  
+  // Debug log (remove after testing)
+  console.log('Landing page - API_BASE_URL:', API_BASE_URL);
+  console.log('Landing page - VITE_API_URL env var:', import.meta.env.VITE_API_URL);
 
   // Redirect to home if already authenticated
   useEffect(() => {
